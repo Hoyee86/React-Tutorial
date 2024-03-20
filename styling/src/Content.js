@@ -10,13 +10,13 @@ const Content = () => {
 
        const handeleClick = () =>{
         console.log("You clicked")
-       }
+       };
 
 
 
        const handeleClick2 = (name) => {
              console.log(`${name} was clicked`)
-       }
+       };
   return (
     <main className='student'>
       <h1>{handleNameChange()}</h1>

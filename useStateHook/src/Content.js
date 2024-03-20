@@ -30,7 +30,7 @@ const Content = () => {
       item: "ponmo"
     },
 
-   ])
+   ]);
     // const handleNameChange = () => {
     //     const names = ["Fulani", "Hoyee", "Eef"];
     //     const int = Math.floor(Math.random() * 3);
@@ -44,6 +44,26 @@ const Content = () => {
     //    const handeleClick2 = (name) => {
     //          console.log(`${name} was clicked`)
     //    }
+
+
+       
+
+      const handleCheck = (value) => {
+          //  console.log(`key: ${id}`)
+          const listItems = items.map((item)=>
+             item.id === value? {...item, checked: !item.checked} : item
+          );
+          setItems(listItems); 
+          localStorage.setItem('shoppinglist', JSON.stringify(listItems))
+      }
+
+
+      const handleDelete = (id) => {
+         const listItems = items.filter((item)=> item.id !==id);
+         setItems(listItems);  
+      }
+
+
   return (
     <main className='student'>
       {/* <h1>{name}</h1>
@@ -51,21 +71,26 @@ const Content = () => {
       <button onClick={handeleClick}>Click me</button>
       <button onDoubleClick={() => handeleClick2('Hayzed')}>Click me</button> */}
 
-
-       <ul>
+       {items.length ? (
+        <ul>
         {items.map((item) =>{
         return(
            <li className='item' key={item.id}>
-               <input type='checkbox' checked={item.checked} />
-
-               <label>{item.item}</label>
-               <FaTrash />
-              
+               <input type='checkbox' 
+                onClick={()=>handleCheck(item.id)}  // This code writting make the checkbox clickable with anonymous function inside input type
+               checked={item.checked} />
+               <label style={(item.checked) ? {textDecoration: "line-through"} : null } 
+               onDoubleClick={()=>handleDelete(item.id)}>{item.item}</label>
+               <FaTrash onClick={()=>handleDelete(item.id)} />
            </li>
         )
          } )}
        </ul>
 
+       ):(
+        <p style={{marginTop: "2rem"}}>Your list is Empty</p>
+       )}
+       
     </main>
   )
 }
