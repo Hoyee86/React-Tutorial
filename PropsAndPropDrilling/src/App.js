@@ -4,6 +4,7 @@ import './App.css';
 import Header from './Header';
 import Content from './Content';
 import Footer from './Footer';
+import AddItem from './AddItem';
 
 
 
@@ -36,6 +37,9 @@ function App() {
     },
 
    ]);
+
+   const [newItem, setNewItem] = useState('')
+
     // const handleNameChange = () => {
     //     const names = ["Fulani", "Hoyee", "Eef"];
     //     const int = Math.floor(Math.random() * 3);
@@ -66,11 +70,23 @@ function App() {
       const handleDelete = (id) => {
          const listItems = items.filter((item)=> item.id !==id);
          setItems(listItems);  
+      };
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        if(!newItem) return;
+
+        setNewItem('')
       }
  
   return (
     <div className="App">
      <Header tittle = "Wellcome to props"/>
+     <AddItem
+        newItem={newItem}
+        setNewItem={setNewItem}
+        handleSubmit={handleSubmit}
+     />
      <Content
        items={items}
        handleCheck={handleCheck}
