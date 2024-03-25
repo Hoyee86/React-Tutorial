@@ -20,7 +20,11 @@ const Header = ({tittle}) => {
     // <header style={{background: "blue", color: "red", fontSize: "24px"}}>
     //   <h1>Cohort 4.0 Student's Details.</h1>
     // </header>
-  )
+  );
+};
+
+Header.defaultProps = {
+  tittle: "Default Tittle"
 }
 
 export default Header

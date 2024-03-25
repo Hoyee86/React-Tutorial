@@ -10,7 +10,7 @@ function App() {
  
   return (
     <div className="App">
-     <Header />
+     <Header tittle = "Welllcome to props"/>
      <Content/>
      <Footer />
     </div>
