@@ -22,7 +22,6 @@ const AddItem = ({newItem, setNewItem, handleSubmit}) => {
          >
          <FaPlus/>
          </button>
-
        </form>
   )
 } 
