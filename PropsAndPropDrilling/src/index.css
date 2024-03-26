@@ -113,9 +113,9 @@ button:hover{
   border-radius: 1px solid #eee;
 }
 
-.searchForm label {
+.searchForm label{
   position: absolute;
-  left: -99999;
+  left: -99999px;
 }
 
 
