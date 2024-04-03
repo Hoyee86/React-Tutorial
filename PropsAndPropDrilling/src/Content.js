@@ -9,7 +9,7 @@ const Content = ({items, handleCheck, handleDelete}) => {
 
 
   return (
-    <main className='student'>
+    <>
       {/* <h1>{name}</h1>
       <button onClick={handleNameChange}>Change Name</button>
       <button onClick={handeleClick}>Click me</button>
@@ -27,7 +27,7 @@ const Content = ({items, handleCheck, handleDelete}) => {
         <p style={{marginTop: "2rem"}}>Your list is Empty</p>
        )}
        
-    </main>
+    </>
   )
 }
 

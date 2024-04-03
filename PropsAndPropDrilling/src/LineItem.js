@@ -5,7 +5,7 @@ const LineItem = ({item, handleCheck, handleDelete}) => {
   return (
     <li className="item" key={item.id}>
     <input type="checkbox" 
-    onClick={() => handleCheck(item.id)}  // this code make the box cliceable and show key and number in the console(anonymus function)
+    onChange={() => handleCheck(item.id)}  // this code make the box cliceable and show key and number in the console anonymus function
     checked={item.checked} />
     
 
@@ -17,6 +17,7 @@ const LineItem = ({item, handleCheck, handleDelete}) => {
     onClick={() => handleDelete(item.id)}   // to make it delete, we put the anonymus funtion inside the trash icon 
     role="button"
     tabIndex="0"
+    aria-label={`Delete ${item.item}`}
     />
   </li>
   )
