@@ -7,7 +7,8 @@ import Missing from "./Missing"
 import Nav from "./Nav"
 import NewPost from "./NewPost"
 import PostPage from "./PostPage"
-import { useState } from "react"
+import { useState } from "react";
+import { format} from 'date-fns';
 
 function App() {
   const [posts, setPosts] = useState([
@@ -45,6 +46,25 @@ function App() {
   const navigate = useNavigate()
   const [search, setSearch] = useState('')
   const [searchResult, setSeachResult] = useState([])
+  const [postTittle, setPostTittle] = useState('');
+  const [postBody, setPostBody] = useState('')
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const id = posts.length ? posts[posts.length -1].id +1: 1
+    const dateTime = format(new Date(), 'MMMM dd, yyyy pp')
+    const newPost = {id, tittle: postTittle, dateTime, body: postBody}
+    const allposts = [...posts, newPost] // this variable is declare to match old posts and newpost together with the of spread notation;
+    setPosts(allposts)
+    setPostTittle('')
+    setPostBody('')
+
+
+
+    navigate('/')
+  }
+  
   const handleDelete = (id) => {
      const postList = posts.filter(post => post.id !== id)
      setPosts(postList)
@@ -57,7 +77,13 @@ function App() {
       <Nav search={search} setSearch={setSearch}/>
       <Routes>
         <Route  path="/" element={<Home posts={posts}/>}/>
-        <Route path="/post" element={<NewPost/>}/>
+        <Route path="/post" element={<NewPost
+         handleSubmit={handleSubmit}
+         postTittle={postTittle}
+         setPostTittle={setPostTittle}
+         postBody={postBody}
+         setPostBody={setPostBody}
+        />}/>
         <Route path="/post/:id"element={<PostPage posts={posts} handleDelete={handleDelete}/>}/>
         <Route path="/about"  element={<About/>} />
         <Route path="*" element={<Missing/>} />
